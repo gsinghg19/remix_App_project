@@ -10,6 +10,9 @@ function MainNavigation() {
         <li className='nav-item'>
           <NavLink to='/notes'>My Notes</NavLink>
         </li>
+        <li className='nav-item'>
+          <NavLink to='/projects'>My Projects Board</NavLink>
+        </li>
       </ul>
     </nav>
   );

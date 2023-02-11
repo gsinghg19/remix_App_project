@@ -5,7 +5,7 @@ export default function Index() {
   return (
     <main id='content'>
       <h1>A better way of keeping track of your important notes</h1>
-      <p>try our early beta and never lose track of your notes again!</p>
+      <p>Try my early beta and never lose track of your notes again!</p>
       <p id='cta'>
         <Link to='/notes'>Try Now!</Link>
       </p>
