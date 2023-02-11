@@ -1,20 +1,9 @@
 {
   "notes": [
     {
-      "title": "test1.1",
-      "content": "testing storing notes",
-      "id": "2023-02-10T22:48:21.821Z"
-    },
-    { "title": "test", "content": "test", "id": "2023-02-10T22:49:14.306Z" },
-    {
-      "title": "testing13224345",
-      "content": "erwerfdfewrf",
-      "id": "2023-02-10T22:49:38.344Z"
-    },
-    {
-      "title": "testing 2",
-      "content": "I am testing the storeNotes action to capture and store all notes and post them as a post request, when the notes component renders on the page\r\n",
-      "id": "2023-02-10T22:50:55.203Z"
+      "title": "New Note App",
+      "content": "Add your note here with this app.\nThis app was made with the remix.js framework.",
+      "id": "2023-02-11T00:54:09.178Z"
     }
   ]
 }
