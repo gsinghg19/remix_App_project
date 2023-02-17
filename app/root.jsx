@@ -1,5 +1,6 @@
 import {
   Links,
+  Link,
   LiveReload,
   Meta,
   Outlet,
@@ -27,6 +28,32 @@ export default function App() {
         <header>
           <MainNavigation />
         </header>
+        <Outlet />
+        <ScrollRestoration />
+        <Scripts />
+        <LiveReload />
+      </body>
+    </html>
+  );
+}
+
+export function ErrorBoundary({error}) {
+  return (
+    <html lang='en'>
+      <head>
+        <Meta />
+        <Links />
+        <title>An error has occured</title>
+      </head>
+      <body>
+        <header>
+          <MainNavigation />
+        </header>
+        <main className='error'>
+          <h1>Oh no!!!! An error has occured.... :(</h1>
+          <p>{error.message}</p>
+          <p><Link to='/'>Click here to return to the homepage</Link></p>
+        </main>
         <Outlet />
         <ScrollRestoration />
         <Scripts />
