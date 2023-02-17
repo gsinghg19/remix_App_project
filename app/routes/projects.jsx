@@ -1,13 +1,71 @@
-import { Link } from '@remix-run/react';
+import { Link, useCatch } from '@remix-run/react';
+import { useLoaderData } from 'react-router';
 import homeStyles from '../styles/home.css';
+import { getStoredProjects, storeProjects } from '../data/projects';
+import NewProject, { links as newProjectLinks } from '../components/NewProject';
+import ProjectList, { links as projectListLinks } from '../components/ProjectList';
+import { json, redirect } from '@remix-run/node';
 
-export default function Index() {
+
+// export default function Index() {
+//   return (
+//     <main id='content'>
+//       <h1>A better way of keeping track of your projects.</h1>
+//       <p>Never lose focus again!</p>
+//     </main>
+//   );
+// }
+
+export default function projectsPage() {
+  const projects = useLoaderData();
   return (
-    <main id='content'>
-      <h1>A better way of keeping track of your projects.</h1>
-      <p>Never lose focus again!</p>
+    <main>
+      <NewProject />
+      <ProjectList projects={projects} />
     </main>
-  );
+  )
+}
+
+export async function loader() {
+  const projects = await getStoredProjects();
+  if(!projects || projects.length === 0) {
+    throw json(
+    {
+      message: 'oh no!! No projects have been found!'},
+    {
+      status: 404,
+      statusText: 'Not Found',
+    });
+  }
+  return json(projects);
+}
+
+export async function action({ request }) {
+  const formData = await request.formData();
+  const projectData = Object.fromEntries(formData);
+  if(projectData.title.trim().length < 5){
+    return {message: 'Error. Title must contain 5 or more characters.'}
+  }
+
+  const existingProjects = await getStoredProjects();
+  projectData.id = new Date().toISOString();
+  const updatedProjects = existingProjects.concat(projectData);
+  await storeProjects(updatedProjects);
+  await new Promise((resolve, reject) => setTimeout(() => resolve(), 500));
+  return redirect('/projects');
+}
+
+export function CatchBoundary() {
+  const caughtResponse = useCatch();
+
+  const message = caughtResponse.data?.message || 'Data not found'
+
+  return (
+    <main>
+      <NewProject />
+      <p className='error'>{message}</p>
+    </main>
+  )
 }
 
 export function ErrorBoundary({error}) {
@@ -21,5 +79,16 @@ export function ErrorBoundary({error}) {
 }
 
 export function links() {
-  return [{ rel: 'stylesheet', href: homeStyles }];
+  return [...newProjectLinks(), ...projectListLinks()];
 }
+
+export function meta() {
+  return {
+    title: 'All Projects',
+    description: 'Manage your projects in one place.'
+  }
+}
+
+// export function links() {
+//   return [{ rel: 'stylesheet', href: homeStyles }];
+// }

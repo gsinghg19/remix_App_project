@@ -1,4 +1,4 @@
-#note-list {
+#project-list {
   max-width: 80rem;
   display: flex;
   flex-wrap: wrap;
@@ -8,11 +8,11 @@
   margin: 2rem auto;
 }
 
-#note-list a {
+#project-list a {
   text-decoration: none;
 }
 
-.note {
+.project {
   width: 30%;
   background-color: var(--color-primary-700);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -22,12 +22,12 @@
   transition: all 0.3s ease-out;
 }
 
-.note:hover {
+.project:hover {
   background-color: var(--color-primary-600);
   transform: translateY(-0.25rem);
 }
 
-.note-meta {
+.project-meta {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -41,12 +41,12 @@
   border-bottom: 2px solid var(--color-primary-300);
 }
 
-.note h2 {
+.project h2 {
   margin: 0 0 0.5rem 0;
   color: var(--color-primary-200);
 }
 
-.note p {
+.project p {
   margin: 50%;
   color: var(--color-primary-100);
   white-space: nowrap;

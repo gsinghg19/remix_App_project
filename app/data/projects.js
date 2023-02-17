@@ -5,7 +5,7 @@ export async function getStoredProjects() {
     encoding: 'utf-8',
   });
   const data = JSON.parse(rawFileContent);
-  const storeProjects = data.notes ?? [];
+  const storeProjects = data.projects ?? [];
   return storeProjects;
 }
 
