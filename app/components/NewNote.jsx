@@ -22,7 +22,7 @@ function NewNote() {
       </p>
       <div className='form-actions'>
         <button disabled={isSubmitting}>
-          {isSubmitting ? 'Adding...' : 'Add Your Note ya Bastard....'}
+          {isSubmitting ? 'Adding...' : 'Add Your Note'}
         </button>
       </div>
     </Form>
