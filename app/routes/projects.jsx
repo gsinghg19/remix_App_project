@@ -1,22 +1,12 @@
 import { Link, useCatch } from '@remix-run/react';
 import { useLoaderData } from 'react-router';
-import homeStyles from '../styles/home.css';
 import { getStoredProjects, storeProjects } from '../data/projects';
 import NewProject, { links as newProjectLinks } from '../components/NewProject';
 import ProjectList, { links as projectListLinks } from '../components/ProjectList';
 import { json, redirect } from '@remix-run/node';
 
 
-// export default function Index() {
-//   return (
-//     <main id='content'>
-//       <h1>A better way of keeping track of your projects.</h1>
-//       <p>Never lose focus again!</p>
-//     </main>
-//   );
-// }
-
-export default function projectsPage() {
+export default function ProjectsPage() {
   const projects = useLoaderData();
   return (
     <main>
@@ -43,9 +33,11 @@ export async function loader() {
 export async function action({ request }) {
   const formData = await request.formData();
   const projectData = Object.fromEntries(formData);
-  if(projectData.title.trim().length < 5){
-    return {message: 'Error. Title must contain 5 or more characters.'}
-  }
+
+  //******TODO: This error component is not working. Need to fix.*****
+  // if(projectData.title.trim().length < 5){
+  //   return {message: 'Error. Title must contain 5 or more characters.'}
+  //}
 
   const existingProjects = await getStoredProjects();
   projectData.id = new Date().toISOString();
@@ -89,6 +81,3 @@ export function meta() {
   }
 }
 
-// export function links() {
-//   return [{ rel: 'stylesheet', href: homeStyles }];
-// }

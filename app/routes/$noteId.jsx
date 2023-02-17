@@ -44,4 +44,4 @@ export function meta({data}) {
       title: data.title,
       description: 'Manage you notes easily!'
     }
-  }
+}

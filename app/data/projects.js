@@ -1,8 +1,8 @@
 import fs from 'fs/promises';
 
 export async function getStoredProjects() {
-  const rawFileContent = await fs.readFile('Projects.json', {
-    encoding: 'utf-8',
+  const rawFileContent = await fs.readFile('projects.json', {
+    encoding: 'utf-8'
   });
   const data = JSON.parse(rawFileContent);
   const storeProjects = data.projects ?? [];
