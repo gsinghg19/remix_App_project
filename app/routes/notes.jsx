@@ -70,3 +70,10 @@ export function ErrorBoundary({error}) {
 export function links() {
   return [...newNoteLinks(), ...noteListLink()];
 }
+
+export function meta() {
+  return {
+    title: 'All Notes',
+    description: 'Manage you notes easily!'
+  }
+}
